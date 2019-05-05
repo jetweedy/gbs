@@ -4,7 +4,7 @@ function Home() {
 	return (
 		<div>
 			<p>Welcome Home!</p>
-			<form method="post" action="/book/add">
+			<form method="post" action="/books/search">
 				
 			</form>
 		</div>

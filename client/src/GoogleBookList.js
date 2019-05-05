@@ -13,8 +13,11 @@ class GoogleBookList extends Component {
   };
   
   componentDidMount() {
-	let searchTerms = this.props.match.params.q;
-	axios.get(GoogleBooksApiUri+searchTerms+"&key="+GoogleApiKey).then(res => {
+	console.log(this.props);
+//	let q = this.props.match.params.q;
+	const params = new URLSearchParams(this.props.location.search); 
+	const q = params.get('q');
+	axios.get(GoogleBooksApiUri+q+"&key="+GoogleApiKey).then(res => {
 		console.log(res.data.items);
 		let books = [];
 		for (var i in res.data.items) {
@@ -30,18 +33,21 @@ class GoogleBookList extends Component {
 
   addBook = (book) => { 
 	console.log("Add book:", book);
-	/*
-	Insert this book into Mongo using Mongoose
-	*/
+	axios.post("http://localhost:8480/api/books/", {author:book.title, title: book.author}).then(res => {
+		console.log(res.data);
+	});
   };
 	
   clickAddBook = (id) => {
 	  var books = [];
 	  for (var b in this.state.books) {
-		  if (this.state.books[b].id==id) {
+		  if (this.state.books[b].id===id) {
 			  this.addBook(this.state.books[b]);
+		  } else {
+			  books.push(this.state.books[b]);
 		  }
 	  }
+	  this.setState({books});
 	  
   };
 	
