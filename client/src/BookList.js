@@ -31,7 +31,7 @@ class BookList extends Component {
 
   deleteBook = (book) => { 
 	console.log("Delete book:", book);
-	axios.delete("http://localhost:8480/api/books/"+book.id, {id: book.id}).then(res => {
+	axios.delete("/api/books/"+book.id, {id: book.id}).then(res => {
 		console.log(res.data);
 	});
   };
