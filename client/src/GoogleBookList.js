@@ -33,7 +33,7 @@ class GoogleBookList extends Component {
 
   addBook = (book) => { 
 	console.log("Add book:", book);
-	axios.post("http://localhost:8480/api/books/", {author:book.title, title: book.author}).then(res => {
+	axios.post("/api/books/", {author:book.title, title: book.author}).then(res => {
 		console.log(res.data);
 	});
   };

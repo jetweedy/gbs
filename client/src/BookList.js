@@ -13,7 +13,7 @@ class BookList extends Component {
 //	let q = this.props.match.params.q;
 	const params = new URLSearchParams(this.props.location.search); 
 	const q = params.get('q');
-	axios.get("http://localhost:8480/api/books/").then(res => {
+	axios.get("/api/books/").then(res => {
 		console.log(res.data);
 		let books = [];
 		for (var i in res.data) {
